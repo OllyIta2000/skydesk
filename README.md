@@ -31,6 +31,37 @@ In the terminal, run:
 
     bash .devcontainer/setup.sh
 
+## Modern desktop look (experimental)
+
+The default desktop is very basic. These steps switch to a modern one (XFCE with a dark theme).
+Not every step has been tested yet, so tell me if something fails.
+
+**Step 1: Switch the desktop.** In the code editor tab, open the terminal and run:
+
+    pkill fluxbox; DISPLAY=:1 nohup dbus-launch --exit-with-session startxfce4 > /tmp/xfce.log 2>&1 &
+
+Wait 20 seconds and look at the desktop tab. If a window asks about the panel, choose **Use default config**.
+
+**Step 2: Dark theme and icons.** Inside the desktop (not the code editor), open the application menu,
+start **Terminal**, and run these three lines:
+
+    xfconf-query -c xsettings -p /Net/ThemeName -s "Arc-Dark"
+    xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark"
+    xfconf-query -c xfwm4 -p /general/theme -s "Arc-Dark"
+
+If the commands don't change anything, use the menu instead: **Settings → Appearance** (choose Arc-Dark and Papirus-Dark)
+and **Settings → Window Manager** (choose Arc-Dark).
+
+**Step 3: A dock.** In the same desktop terminal, run:
+
+    plank &
+
+**If the screen goes blank:** in the code editor terminal, run
+
+    DISPLAY=:1 startfluxbox &
+
+to go back to the basic desktop.
+
 ## Rules
 
 - Never set port 6080 to **Public**. Keep it private.
