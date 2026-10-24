@@ -8,11 +8,12 @@
       "vncPort": "5901"
     }
   },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
   "forwardPorts": [6080],
   "portsAttributes": {
     "6080": {
       "label": "Skydesk Desktop",
-      "onAutoForward": "openBrowser"
+      "onAutoForward": "notify"
     }
   }
 }
